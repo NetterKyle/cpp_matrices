@@ -36,4 +36,32 @@ class Matrix
 
             return std::sqrt(sum);
         }
+    
+        Matrix<T> operator*(Matrix& mat2)
+        {
+            Matrix<T> multiplied_matrix(num_rows, mat2.num_columns, 0);
+            for (int i = 0; i < num_rows; i++) // Iterate for number of rows in current matrix
+            {
+                for (int j = 0; j < mat2.num_columns; j++) // Iterate for number of columns in second matrix
+                {
+                    double sum = 0;
+                    for (int k = 0; k < num_columns; k++) // Iterate for number of columns in current matrix
+                    {
+                        sum += operator()(i,k) * mat2(k,j);
+                    }
+                    multiplied_matrix(i, j) = sum;
+                }
+            }
+
+            return multiplied_matrix;
+        }
+
+        void print_data()
+        {
+            for (int value : data)
+            {
+                std::cout << value << " ";
+            }
+            std::cout << std::endl;
+        }
 };
