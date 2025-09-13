@@ -36,6 +36,35 @@ class Matrix
 
             return std::sqrt(sum);
         }
+
+        Matrix<T> operator+(Matrix& mat2)
+        {
+            Matrix<T> sum_matrix(num_rows, mat2.num_columns, 0);
+            for (int i = 0; i < num_rows; i++) // Iterate for number of rows in current matrix
+            {
+                for (int j = 0; j < mat2.num_columns; j++) // Iterate for number of columns in second matrix
+                {
+                    sum_matrix(i,j) = operator()(i,j) + mat2(i,j);
+                }
+            }
+
+            return sum_matrix;
+        }
+
+        Matrix<T> operator-(Matrix& mat2)
+        {
+            Matrix<T> diff_matrix(num_rows, mat2.num_columns, 0);
+            for (int i = 0; i < num_rows; i++) // Iterate for number of rows in current matrix
+            {
+                for (int j = 0; j < mat2.num_columns; j++) // Iterate for number of columns in second matrix
+                {
+                    diff_matrix(i,j) = operator()(i,j) - mat2(i,j);
+                }
+            }
+
+            return diff_matrix;
+        }
+
     
         Matrix<T> operator*(Matrix& mat2)
         {
